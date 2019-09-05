@@ -10,8 +10,9 @@ import {
   Col,
   Button,
   CardTitle,
-  CardSubtitle
+  CardSubtitle,Modal
 } from 'reactstrap'
+import ModalDetail from "../components/ModalDetail";
 
 export class NavbarCart extends Component {
   constructor (props) {
@@ -19,14 +20,23 @@ export class NavbarCart extends Component {
 
     this.toggleNavbar = this.toggleNavbar.bind(this)
     this.state = {
-      collapsed: true
+      collapsed: true,
+      modal:false
     }
+    console.log(`cart ==> `, localStorage.cart)
+    this.toggle = this.toggle.bind(this)
   }
 
   toggleNavbar () {
     this.setState({
       collapsed: !this.state.collapsed
     })
+  }
+
+  toggle () {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }))
   }
   render () {
     return (
@@ -69,44 +79,58 @@ export class NavbarCart extends Component {
             </p>
           </div> */}
           <div>
-              <CardBody>
-                <Row>
-                  <Col md='2'>
-                    <img
-                      src={require('../assets/images/food-and-restaurant.png')}
-                      alt='orang'
-                      style={{ width: 70, height: 70 }}
-                    />
-                  </Col>
-                  <Col md='7'>
-                    <Row>
-                      <Col>
-                        <CardTitle>anu</CardTitle>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <Button onClick={() => this.decrement()}>-</Button>
-                        {this.state.qty}
-                        <Button onClick={() => this.increment()}>+</Button>
-                      </Col>
-                    </Row>
-                  </Col>
-                  <Col md='3'>
-                    <Row>
-                      <Col />
-                    </Row>
-                    <Row>
-                      <Col>
-                        <CardSubtitle style={{ fontSize: 12 }}>
-                          harga
-                        </CardSubtitle>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-              </CardBody>
+            <CardBody>
+              <Row>
+                <Col md='2'>
+                  <img
+                    src={require('../assets/images/food-and-restaurant.png')}
+                    alt='orang'
+                    style={{ width: 70, height: 70 }}
+                  />
+                </Col>
+                <Col md='7'>
+                  <Row>
+                    <Col>
+                      <CardTitle>anu</CardTitle>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <Button onClick={() => this.decrement()}>-</Button>
+                      1
+                      <Button onClick={() => this.increment()}>+</Button>
+                    </Col>
+                  </Row>
+                </Col>
+                <Col md='3'>
+                  <Row>
+                    <Col />
+                  </Row>
+                  <Row>
+                    <Col>
+                      <CardSubtitle style={{ fontSize: 12 }}>
+                        harga
+                      </CardSubtitle>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </CardBody>
           </div>
+          <Container style={{ bottom: '10%', position: 'absolute' }}>
+            <Button outline color='danger' style={{ marginRight: 32 }}>
+              CANCEL
+            </Button>
+            <Button onClick={()=>this.toggle()} color='primary'>CHECKOUT</Button>
+          </Container>
+          <Modal
+              isOpen={this.state.modal}
+              toggle={this.toggle}
+              className={this.props.className}
+              centered
+            >
+              <ModalDetail/>
+            </Modal>
         </Container>
         <Navbar
           color='faded'

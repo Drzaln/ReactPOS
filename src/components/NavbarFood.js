@@ -87,7 +87,7 @@ export class NavbarFood extends Component {
               className={this.props.className}
               centered
             >
-              <ModalHeader toggle={this.props.toggle}>Modal title</ModalHeader>
+              <ModalHeader toggle={this.props.toggle}>Add Menu</ModalHeader>
               <ModalBody>
                 <AddMenu />
               </ModalBody>

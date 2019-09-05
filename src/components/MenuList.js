@@ -19,6 +19,8 @@ export class MenuList extends Component {
 
     this.state = {
       menus: [],
+      items:[],
+      render:'',
       isLoading: true
     }
   }
@@ -52,8 +54,10 @@ export class MenuList extends Component {
   }
 
   render () {
+    localStorage.setItem('cart', this.state.items)
     const { menus, isLoading } = this.state
     console.log('menu list: ', this.state.menus)
+    console.log(`items ==> `, this.state.items)
     return (
       <div>
         <Row>
@@ -70,7 +74,8 @@ export class MenuList extends Component {
                       borderColor: 'transparent',
                       cursor: 'pointer'
                     }}
-                    onClick={() => this.props.addCart(item)}
+                    // onClick={() => this.props.addCart(item)}
+                    onClick={() => this.state.items.push(item) && this.setState({render: this.state.render})}
                   >
                     <CardImg
                       top
