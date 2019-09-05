@@ -6,10 +6,10 @@ import Login from '../screens/Login'
 export class Routing extends Component {
   render () {
     return (
-      <div>
-        <Route exact path='/' component={Login} />
-        <Route exact path='/home' component={Home} />
-      </div>
+      <>
+        <Route exact path={'/'} component={Login} />
+        <Route exact path={'/home'} component={Home} />
+      </>
     )
   }
 }
