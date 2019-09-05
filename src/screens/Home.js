@@ -5,6 +5,12 @@ import { Row, Col, Container } from 'reactstrap'
 import MenuList from '../components/MenuList'
 
 export default class App extends Component {
+  constructor (props) {
+    super(props)
+    localStorage.nama_user !== undefined
+      ? console.log(`ok`)
+      : (window.location.href = '/login')
+  }
   render () {
     return (
       <div>

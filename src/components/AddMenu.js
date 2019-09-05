@@ -71,7 +71,7 @@ export class AddMenu extends React.Component {
           title: 'Add Menu',
           text: 'Success Add Menu!'
         }).then(() => {
-          window.location.href = '/'
+          window.location.href = '/home'
         })
       })
       .catch(error => {

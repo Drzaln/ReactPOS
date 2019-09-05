@@ -7,7 +7,12 @@ import {
   Col,
   Modal,
   ModalHeader,
-  ModalBody
+  ModalBody,
+  Collapse,
+  Nav,
+  NavItem,
+  NavLink,
+  Button
 } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +21,7 @@ import AddMenu from '../components/AddMenu'
 export class NavbarFood extends Component {
   constructor (props) {
     super(props)
-
+    this.toggleNavbar = this.toggleNavbar.bind(this)
     this.state = {
       collapsed: true,
       modal: false
@@ -28,6 +33,17 @@ export class NavbarFood extends Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }))
+  }
+
+  toggleNavbar () {
+    this.setState({
+      collapsed: !this.state.collapsed
+    })
+  }
+
+  logout () {
+    localStorage.clear()
+    window.location.href = '/'
   }
 
   render () {
@@ -85,6 +101,13 @@ export class NavbarFood extends Component {
           style={{ backgroundColor: 'white', position: 'fixed', width: '75%' }}
         >
           <NavbarToggler onClick={this.toggleNavbar} className='mr-auto' />
+          <Collapse isOpen={!this.state.collapsed} navbar>
+            <Nav navbar>
+              <NavItem>
+                <Button onClick={() => this.logout()}>LogOut</Button>
+              </NavItem>
+            </Nav>
+          </Collapse>
           <NavbarBrand
             href='/'
             className='m-auto'
