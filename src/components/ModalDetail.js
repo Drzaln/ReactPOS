@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, ModalBody, Row, Col, Button } from 'reactstrap';
-let nama = localStorage.nama
+let nama = localStorage.nama_user
 class ModalDetail extends React.Component {
     render() {
         return (
