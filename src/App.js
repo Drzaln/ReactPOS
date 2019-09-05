@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import NavbarFood from './components/NavbarFood'
+import NavbarCart from './components/NavbarCart'
+import { Row, Col, Container } from 'reactstrap'
+import MenuList from './components/MenuList'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render () {
+    return (
+      <div>
+        <Container fluid>
+          <Row>
+            <Col md='9' style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <NavbarFood />
+              <Container
+                style={{
+                  marginLeft: '9%',
+                  marginTop: '5%',
+                  width: '93%',
+                  padding: 32,
+                  backgroundColor: 'rgba(190, 195, 202, 0.3)'
+                }}
+              >
+                <MenuList />
+              </Container>
+            </Col>
+            <Col md='3' style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <NavbarCart />
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    )
+  }
 }
-
-export default App;
