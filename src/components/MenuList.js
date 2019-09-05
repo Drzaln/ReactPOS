@@ -56,7 +56,6 @@ export class MenuList extends Component {
   render () {
     localStorage.setItem('cart', this.state.items)
     const { menus, isLoading } = this.state
-    console.log('menu list: ', this.state.menus)
     console.log(`items ==> `, this.state.items)
     return (
       <div>
