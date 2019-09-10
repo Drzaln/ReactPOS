@@ -23,7 +23,6 @@ export class NavbarCart extends Component {
       collapsed: true,
       modal:false
     }
-    console.log(`cart ==> `, localStorage.cart)
     this.toggle = this.toggle.bind(this)
   }
 
@@ -39,6 +38,8 @@ export class NavbarCart extends Component {
     }))
   }
   render () {
+    const cart = localStorage.cart
+    console.log(cart)
     return (
       <>
         <Container

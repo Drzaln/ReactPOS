@@ -19,7 +19,7 @@ export class MenuList extends Component {
 
     this.state = {
       menus: [],
-      items:[],
+      cart:[],
       render:'',
       isLoading: true
     }
@@ -43,6 +43,14 @@ export class MenuList extends Component {
       })
   }
 
+  addToCart = async (item) => {
+    await this.state.cart.push(item)
+    await this.setState({
+        cart: this.state.cart
+    })
+    await localStorage.setItem('cart', JSON.stringify(this.state.cart))
+}
+
   textSplit (text) {
     if (text.length > 10) {
       let textSplit = text.substr(0, 25)
@@ -54,9 +62,8 @@ export class MenuList extends Component {
   }
 
   render () {
-    localStorage.setItem('cart', this.state.items)
     const { menus, isLoading } = this.state
-    console.log(`items ==> `, this.state.items)
+    console.log(`items ==> `, this.state.cart)
     return (
       <div>
         <Row>
@@ -73,8 +80,8 @@ export class MenuList extends Component {
                       borderColor: 'transparent',
                       cursor: 'pointer'
                     }}
-                    // onClick={() => this.props.addCart(item)}
-                    onClick={() => this.state.items.push(item) && this.setState({render: this.state.render})}
+                    onClick={() => this.addToCart(item)}
+                    // onClick={() => this.state.items.push(item) && this.setState({render: this.state.render})}
                   >
                     <CardImg
                       top
